@@ -1,0 +1,39 @@
+# def find_post(id):
+#     for post in my_posts:
+#         if post["id"] == id:            
+#             return post
+        
+# def find_index(id):
+#     for post in my_posts:
+#         if post["id"] == id:
+#             return my_posts.index(post)
+        
+# def find_index(id):
+#     for index, post in enumerate(my_posts):
+#         if post["id"] == id:
+#             return index
+
+# cursor.execute("""INSERT INTO post (title, content, published) VALUES(%s, %s, %s) RETURNING *""", (post.title, post.content, post.is_published))
+# new_post = cursor.fetchone()
+# conn.commit()
+# new_post = models.Post(title=post.title, content=post.content, published=post.is_published)
+
+# Every time we provide parameter to endpoint it will always going to be string like below
+# RETURNING only works with INSERT, DELETE and UPDATE
+
+# cursor.execute("""SELECT * FROM post WHERE id = %s""", (str(id),))
+# post = cursor.fetchone()
+
+# cursor.execute("""DELETE FROM post WHERE id = %s RETURNING *""", [str(id),])
+# post = cursor.fetchone()
+# conn.commit()
+
+# cursor.execute("""UPDATE post SET title = %s, content = %s, published = %s WHERE id=%s RETURNING *""", [updated_post.title, updated_post.content, updated_post.is_published, str(id)])
+# post = cursor.fetchone()
+# conn.commit()
+
+@app.get("/sqlalchemy")
+def test_posts(db: Session = Depends(get_db)):
+    posts = db.query(models.Post)
+    print(posts)
+    return {"data": "sucessfull" }
