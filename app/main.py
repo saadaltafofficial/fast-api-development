@@ -88,6 +88,3 @@ def update_post(id: int, updated_post: schemas.PostBase, db: Session = Depends(g
 @app.post("/users", status_code=status.HTTP_201_CREATED)
 def create_user(db: Session = Depends(get_db)):
     pass
-
-
-
