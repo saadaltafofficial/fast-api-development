@@ -1,7 +1,8 @@
 from .database import engine
-from . import models
+from . import models, config
 from fastapi import FastAPI
 from .routers import posts, users, auth
+
 
 
 models.Base.metadata.create_all(bind=engine)
@@ -13,4 +14,4 @@ app.include_router(auth.router)
 
 @app.get("/")
 def root():
-    return {"message": "welcome to my this api"}
+    return {"message": "welcome to my this api"} 
