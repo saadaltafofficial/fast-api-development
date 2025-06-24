@@ -39,6 +39,9 @@ class PostResponse(PostBase):
     class Config:
         from_attributes = True
 
+class PostOut(BaseModel):
+    Post: PostResponse
+    votes: int
 
 
 class Token(BaseModel):

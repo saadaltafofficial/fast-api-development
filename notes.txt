@@ -43,3 +43,19 @@ select * from votes;
 select * from posts;
 
 select posts.*, COUNT(votes.post_id) as no_votes from posts LEFT JOIN votes ON posts.id = votes.post_id group by posts.id;
+
+
+{
+        "title": "This is new post",
+        "content": "This is 11 post",
+        "published": true,
+        "id": 2,
+        "created_at": "2025-06-23T12:53:12.430682+05:00",
+        "owner_id": 11,
+        "owner": {
+            "id": 11,
+            "email": "piki@gmail.com",
+            "username": "piki",
+            "created_at": "2025-06-20T14:29:57.273029+05:00"
+        }
+    },
