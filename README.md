@@ -50,6 +50,63 @@ uvicorn app.main:app --reload
 - `/posts`: Post management endpoints
 - `/auth`: Authentication endpoints
 
+## Useful Commands
+
+To add alembic to your project you can use
+```bash
+pip install alembic
+```
+
+To create alembic.ini file you can use
+```bash
+alembic init alembic
+```
+
+To add new revision to database you can use
+```bash
+alembic revision --autogenerate -m "message"
+```
+
+If you changed anything in development use the below command first push the changes to github then to production
+```bash
+git add .
+git commit -m "message"
+git push remote main
+git push heroku main
+```
+
+To add heroku to your project you can use
+```bash
+heroku login
+heroku create your-app-name
+```
+
+If you update the database use the below command first before pushing the changes to production
+```bash
+heroku run "alembic upgrade head"
+```
+
+To restart the heroku application you can use
+```bash
+heroku ps:restart
+```
+
+To check logs of your application you can use
+```bash
+heroku logs -t
+```
+
+To check the info of you application you can use
+```bash
+heroku app:info fastapi-development
+```
+
+To create a database you can use
+```bash
+heroku addons:create heroku-postgresql:essential-0 --app fastapi-development
+```
+
+
 ## Project Structure
 
 ```
