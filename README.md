@@ -106,6 +106,17 @@ To create a database you can use
 heroku addons:create heroku-postgresql:essential-0 --app fastapi-development
 ```
 
+To set exports from .env file in ubuntu you can use
+```bash
+set -o allexport; source /home/saad/.env; set +o allexport
+```
+
+Gunicorn processes can be managed using gunicorn or gunicorn[gevent]
+
+```bash
+gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8080
+```   
+
 
 ## Project Structure
 
