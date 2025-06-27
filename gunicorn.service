@@ -1,0 +1,18 @@
+GNU nano 7.2                                                                /etc/systemd/system/gunicorn.service *                                                                        
+[Unit]
+Description=Demo fastapi project
+After=network.target
+
+[Service]
+User=saad
+Group=saad
+WorkingDirectory=/home/saad/fastapi-development/src
+EnvironmentFile=/home/saad/.env
+Environment="PATH=/home/saad/fastapi-development/venv/bin"
+ExecStart=/home/saad/fastapi-development/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8080
+
+
+[Install]
+WantedBy=multi-user.target
+
+
