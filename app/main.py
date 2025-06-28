@@ -24,4 +24,4 @@ app.include_router(vote.router)
 
 @app.get("/")
 def root():
-    return {"message": "Welcome to my first complete backend project and I'm so happy to deploy it and share it with you, let me know if you think I have to add something. I will definately consider it. Thanks"} 
+    return {"message": "Hi I'm fastapi"} 
