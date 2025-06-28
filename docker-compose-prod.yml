@@ -3,6 +3,7 @@ version: '3'
 services:
   api:
     image: jada8676/fastapi-saad
+    pull_policy: always
     depends_on:
       - postgres
     ports:
