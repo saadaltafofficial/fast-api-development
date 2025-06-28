@@ -7,18 +7,17 @@ services:
       - postgres
     ports:
       - "8080:8080"
-    env_file:
-      - .env
-    # environment:
-    #   - DATABASE_HOSTNAME=postgres
-    #   - DATABASE_PORT=5432
-    #   - DATABASE_PASSWORD=Beenco.%40123
-    #   - DATABASE_ALEMBIC_PASSWORD=Beenco.%%40123
-    #   - DATABASE_NAME=fastapi
-    #   - DATABASE_USERNAME=postgres
-    #   - SECRET_KEY=woi52u3059203jhpiaejp0o2tju351029erw3ret2q4562346tgdu4573547357357gdhffyw34623466ju
-    #   - ALGORITHM=HS256
-    #   - ACCESS_TOKEN_EXPIRES_MINUTES=60
+    # env_file:
+    #   - .env
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=beenco123
+      - DATABASE_NAME=fastapi
+      - DATABASE_USERNAME=postgres
+      - SECRET_KEY=woi52u3059203jhpiaejp0o2tju351029erw3ret2q4562346tgdu4573547357357gdhffyw34623466ju
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRES_MINUTES=60
   postgres:
     image: postgres
     ports:
