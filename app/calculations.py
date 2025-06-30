@@ -12,6 +12,10 @@ def divide(num1: int, num2: int):
         raise Exception("Value can't be 0")
     return num1 / num2
 
+
+class InsufficientFunds(Exception):
+    pass
+
 class BankAccount():
     def __init__(self, starting_balance=0):
         self.balance = starting_balance
@@ -20,6 +24,9 @@ class BankAccount():
         self.balance += amount
     
     def withdraw(self, amount):
+        if amount > self.balance:
+            raise InsufficientFunds("insufficient funds account")
+            # raise ZeroDivisionError()
         self.balance -= amount
     
     def collect_interest(self):
