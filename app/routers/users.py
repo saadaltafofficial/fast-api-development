@@ -1,20 +1,24 @@
 from .. import models, schemas, utils
 from sqlalchemy.orm import Session
-from fastapi import  HTTPException, status, Depends, APIRouter
+from fastapi import HTTPException, status, Depends, APIRouter
 from ..database import get_db
 
-router = APIRouter(
-    prefix="/users",
-    tags=["Users"]
-)
+router = APIRouter(prefix="/users", tags=["Users"])
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserResponse)
+
+@router.post(
+    "/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserResponse
+)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
-    find_user = db.query(models.User).filter(models.User.email == user.email or models.User.username == user.username)
+    find_user = db.query(models.User).filter(
+        models.User.email == user.email or models.User.username == user.username
+    )
 
-    if find_user.first() != None:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"user already exists")
+    if not find_user.first():
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN, detail=f"Invalid Credentials"
+        )
 
     hashed_password = utils.hash(user.password)
     user.password = hashed_password
@@ -34,5 +38,5 @@ def get_user(id: int, db: Session = Depends(get_db)):
 
     if user == None:
         raise HTTPException(status_code=404, detail=f"user with id:{id} was not found")
-    
-    return user 
+
+    return user
